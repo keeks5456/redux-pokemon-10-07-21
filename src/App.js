@@ -2,12 +2,12 @@
 import PokeDex from "./components/PokeDex";
 
 //routes
-import { Routes, Route } from "react-router";
+import { Routes, Route } from "react-router-dom";
 
 function App() {
   return (
     <Routes>
-      <Route exact path="/pokedex" component={PokeDex}></Route>
+      <Route  path="/" element={<PokeDex />}></Route>
     </Routes>
   );
 }

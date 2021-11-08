@@ -27,3 +27,5 @@ const pokedexReducer = (state = initialState, action) => {
       return state;
   }
 };
+
+export default pokedexReducer;
