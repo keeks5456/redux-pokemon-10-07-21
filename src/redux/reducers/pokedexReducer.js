@@ -5,7 +5,7 @@ const initialState = {
   error: "",
 };
 
-const pokemonReducer = (state = initialState, action) => {
+const pokedexReducer = (state = initialState, action) => {
   switch (action.type) {
     case "FETCH_POKEMON_REQUEST":
       return {
