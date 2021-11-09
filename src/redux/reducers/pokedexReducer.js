@@ -7,17 +7,17 @@ const initialState = {
 
 const pokedexReducer = (state = initialState, action) => {
   switch (action.type) {
-    case "FETCH_POKEMON_REQUEST":
+    case "FETCH_POKEDEX_REQUEST":
       return {
         loading: true,
       };
-    case "FETCH_POKEMON_SUCCESS":
+    case "FETCH_POKEDEX_SUCCESS":
       return {
         ...state,
         loading: false,
         pokeDex: action.payload,
       };
-    case "FETCH_POKEMON_FALIURE":
+    case "FETCH_POKEDEX_FALIURE":
       return {
         ...state,
         loading: false,
