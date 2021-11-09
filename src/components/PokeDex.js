@@ -1,5 +1,5 @@
-import React from 'react'
-
+import { connect } from 'react-redux'
+import { useEffect } from 'react'
 const PokeDex = () => {
   return (
     <div>
@@ -8,4 +8,11 @@ const PokeDex = () => {
   )
 }
 
-export default PokeDex
+const mapDispatchToProps = (dispatch) =>{
+  return {
+    
+  }
+}
+
+
+export default connect(null, mapDispatchToProps)(PokeDex)
