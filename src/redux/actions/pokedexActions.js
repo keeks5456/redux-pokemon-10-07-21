@@ -32,7 +32,7 @@ export const fetchAllFromPokedex = () => {
     axios
       .get(`https://pokeapi.co/api/v2/pokemon`)
       .then((res) => {
-        const pokemons = res;
+        const pokemons = res.data.results;
         console.log(pokemons);
         dispatch(fetchPokedexSuccess(pokemons));
       })
