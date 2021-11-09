@@ -31,13 +31,15 @@ export const fetchAllFromPokedex = () => {
   return (dispatch) => {
     dispatch(fetchPokedexRequest);
     axios
-      .get(`https://fakestoreapi.com/products`)
+      .get(`https://pokeapi.co/api/v2/pokemon`)
       .then((res) => {
-        const pokedex = res.data;
-        dispatch(fetchPokedexSuccess(pokedex));
+        const pokemons = res;
+        console.log(pokemons);
+        dispatch(fetchPokedexSuccess(pokemons));
       })
       .catch((error) => {
-        const errorMessage = error.message;
+        const errorMessage = error.errorMessage;
+
         dispatch(fetchPokedexFailure(errorMessage));
         console.log(errorMessage);
       });
