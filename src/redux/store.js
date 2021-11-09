@@ -1,8 +1,10 @@
-import { createStore } from "redux";
+import { createStore, applyMiddleware, compose } from "redux";
+import thunk from "redux-thunk";
+
 import allReducers from "./reducers/rootReducer";
 
-const store = createStore( allReducers,
-  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__()
-); //the create store will pass in a reducer as a param
+let store = createStore(allReducers, compose(applyMiddleware(thunk),
+  window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
+  ) 
 
 export default store
