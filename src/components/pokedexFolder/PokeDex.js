@@ -1,9 +1,14 @@
 import { connect } from "react-redux";
-import { useEffect } from "react";
+import { useSelector, useEffect } from "react";
 import { fetchAllFromPokedex } from "../../redux/actions/pokedexActions";
 import PokedexCard from "./PokedexCard";
+//styling
+import { Container } from "./pokedexStyling";
 
 const PokeDex = ({ fetchAllFromPokedex, pokedexData }) => {
+const [currentPage, setCurrentPage] = useSelector("https://pokeapi.co/api/v2/pokemon")
+
+
   useEffect(() => {
     fetchAllFromPokedex();
   }, [fetchAllFromPokedex]);
@@ -14,12 +19,12 @@ const PokeDex = ({ fetchAllFromPokedex, pokedexData }) => {
   ) : pokedexData.error ? (
     <p>{pokedexData.error}</p>
   ) : (
-    <div>
+    <Container>
       {pokedexData.pokeDex &&
         pokedexData.pokeDex.map((pokedex, index) => (
           <PokedexCard key={index} pokemonInfo={pokedex}/>
         ))}
-    </div>
+    </Container>
   );
 };
 
