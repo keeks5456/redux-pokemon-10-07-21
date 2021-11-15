@@ -3,7 +3,8 @@ import axios from "axios";
 
 //components
 import PokeDex from "./components/pokedexFolder/PokeDex";
-import Pagination from "./components/pokedexFolder/pagination/Pagination";
+import Pagination from "./components/pagination/Pagination";
+import PokemonList from "./components/pokedexFolder/PokemonList";
 //routes
 import { Routes, Route } from "react-router-dom";
 
@@ -49,6 +50,7 @@ function App() {
         goToNextPage={nextPageUrl ? goToNextPage : null}
         gotToPrevPage={prevPageUrl ? gotToPrevPage : null}>
         </Route>
+        <Route path="/" element={<PokemonList  pokemon={pokemon}/>}></Route>
       </Routes>
       <Pagination
         goToNextPage={nextPageUrl ? goToNextPage : null}
