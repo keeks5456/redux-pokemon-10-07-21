@@ -2,7 +2,10 @@ import {
   FETCH_POKEDEX_FAILURE,
   FETCH_POKEDEX_REQUEST,
   FETCH_POKEDEX_SUCCESS,
-} from "./types";
+  //testing
+  TO_NEXT_PAGE,
+  TO_PREV_PAGE,
+} from "./pokedexTypes";
 
 const axios = require("axios");
 
@@ -26,6 +29,22 @@ export const fetchPokedexFailure = (error) => {
     payload: error,
   };
 };
+//testing
+export const toNextPage = (page) => {
+  return {
+    type: TO_NEXT_PAGE,
+    payload: page,
+  };
+};
+
+export const toPreviousPage = (page) => {
+  return {
+    type: TO_PREV_PAGE,
+    payload: page,
+  };
+};
+
+
 
 export const fetchAllFromPokedex = () => {
   return (dispatch) => {
@@ -34,8 +53,12 @@ export const fetchAllFromPokedex = () => {
       .get(`https://pokeapi.co/api/v2/pokemon`)
       .then((res) => {
         const pokemons = res.data.results;
-        console.log(pokemons);
+        const theNextPage = res.data.next;
+        const thePrevPage = res.data.previous
+        // console.log(pokemons);
         dispatch(fetchPokedexSuccess(pokemons));
+        dispatch(toNextPage(theNextPage));
+        dispatch(toPreviousPage(thePrevPage));
       })
       .catch((error) => {
         const errorMessage = error.errorMessage;
@@ -45,4 +68,3 @@ export const fetchAllFromPokedex = () => {
       });
   };
 };
-

@@ -1,8 +1,12 @@
+import { TO_NEXT_PAGE, TO_PREV_PAGE } from "../actions/pokedexTypes";
+
 const initialState = {
   loading: false,
   pokeDex: [],
   pokeTeam: [],
   error: "",
+  nextPage: "",
+  prevPage: ""
 };
 
 const pokedexReducer = (state = initialState, action) => {
@@ -23,6 +27,18 @@ const pokedexReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
+    case TO_NEXT_PAGE:
+      return {
+        ...state,
+        loading: false,
+        nextPage: action.payload || null,
+      };
+    case TO_PREV_PAGE:
+      return {
+        ...state,
+        loading: false,
+        prevPage: action.payload || null
+      }
     default:
       return state;
   }
