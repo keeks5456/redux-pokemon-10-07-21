@@ -1,19 +1,20 @@
 import { connect } from "react-redux";
-import { useSelector, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { fetchAllFromPokedex } from "../../redux/actions/pokedexActions";
+//component
 import PokedexCard from "./PokedexCard";
+import Pagination from "./pagination/Pagination";
 //styling
 import { Container } from "./pokedexStyling";
 
 const PokeDex = ({ fetchAllFromPokedex, pokedexData }) => {
-const [currentPage, setCurrentPage] = useSelector("https://pokeapi.co/api/v2/pokemon")
 
 
   useEffect(() => {
     fetchAllFromPokedex();
   }, [fetchAllFromPokedex]);
 
-  console.log(pokedexData.pokeDex);
+  // console.log(pokedexData.pokeDex);
   return pokedexData.loading ? (
     <h2>Loading...</h2>
   ) : pokedexData.error ? (
@@ -24,7 +25,9 @@ const [currentPage, setCurrentPage] = useSelector("https://pokeapi.co/api/v2/pok
         pokedexData.pokeDex.map((pokedex, index) => (
           <PokedexCard key={index} pokemonInfo={pokedex}/>
         ))}
+        <Pagination />
     </Container>
+    
   );
 };
 

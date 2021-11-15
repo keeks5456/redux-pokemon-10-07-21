@@ -34,7 +34,7 @@ export const fetchAllFromPokedex = () => {
       .get(`https://pokeapi.co/api/v2/pokemon`)
       .then((res) => {
         const pokemons = res.data.results;
-        // console.log(pokemons);
+        console.log(pokemons);
         dispatch(fetchPokedexSuccess(pokemons));
       })
       .catch((error) => {
