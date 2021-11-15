@@ -1,14 +1,12 @@
 import { Card, Image } from "./pokedexStyling";
 
-
-
-const PokedexCard = ({ pokemonInfo }) => {  
+const PokedexCard = ({ pokemonInfo }) => {
   console.log(pokemonInfo);
-  return( 
+  return (
     <Card>
       <p>{pokemonInfo.name}</p>
-      <Image src={pokemonInfo.url} alt={pokemonInfo.name}></Image>
-    </Card>)
+    </Card>
+  );
 };
 
 export default PokedexCard;
