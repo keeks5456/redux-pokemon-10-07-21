@@ -3,7 +3,9 @@ import { useState, useEffect } from "react";
 import { fetchAllFromPokedex } from "../../redux/actions/pokedexActions";
 //component
 import PokedexCard from "./PokedexCard";
-import Pagination from "./pagination/Pagination";
+import Pagination from "../pagination/Pagination";
+
+
 //styling
 import { Container } from "./pokedexStyling";
 
