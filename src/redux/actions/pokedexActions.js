@@ -31,6 +31,20 @@ export const fetchPokedexFailure = (error) => {
   };
 };
 
+export const toNextPage = (page) => {
+  return {
+    type: TO_NEXT_PAGE,
+    payload: page,
+  };
+};
+
+export const toPreviousPage = (page) => {
+  return {
+    type: TO_PREV_PAGE,
+    payload: page,
+  };
+};
+
 
 export const fetchAllFromPokedex = () => {
   return (dispatch) => {

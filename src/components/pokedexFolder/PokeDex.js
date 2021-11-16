@@ -10,7 +10,7 @@ import {
 import PokedexCard from "./PokedexCard";
 import Pagination from "../pagination/Pagination";
 //testing
-// import PaginationRedux from "../pagination/PaginationRedux";
+import PaginationRedux from "../pagination/PaginationRedux";
 
 //styling
 import { Container } from "./pokedexStyling";
