@@ -3,7 +3,6 @@ import {
   FETCH_POKEDEX_REQUEST,
   FETCH_POKEDEX_SUCCESS,
   FETCH_POKEMON_DETAIL_SUCCESS,
-  //testing
   TO_NEXT_PAGE,
   TO_PREV_PAGE,
 } from "./pokedexTypes";
@@ -54,7 +53,6 @@ export const fetchAllFromPokedex = () => {
       .then((res) => {
         const pokemons = res.data.results;
         const nextPage = res.data.next
-        // console.log(pokemons);
         dispatch(fetchPokedexSuccess(pokemons));
         dispatch(toNextPage(nextPage))
       })
@@ -76,7 +74,6 @@ export const nextPage = (page) => {
         const pokemons = res.data.results
         const nextPage = res.data.next;
         const prevPage = res.data.previous;
-        console.log(nextPage)
         dispatch(fetchPokedexSuccess(pokemons));
         dispatch(toNextPage(nextPage));
         dispatch(toPreviousPage(prevPage));
