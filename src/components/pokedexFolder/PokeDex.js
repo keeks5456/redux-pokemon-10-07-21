@@ -16,6 +16,8 @@ const PokeDex = ({ fetchAllFromPokedex, pokedexData }) => {
     fetchAllFromPokedex();
   }, [fetchAllFromPokedex]);
 
+
+
   // console.log(pokedexData.pokeDex);
   return pokedexData.loading ? (
     <h2>Loading...</h2>
@@ -34,8 +36,11 @@ const PokeDex = ({ fetchAllFromPokedex, pokedexData }) => {
 };
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     pokedexData: state.pokedex,
+    nextPokePage: state.pokedex.nextPage,
+    prevPokePage: state.pokedex.prevPage
   };
 };
 

@@ -46,11 +46,8 @@ function App() {
   return (
     <>
       <Routes>
-        <Route path="/pokedex" element={<PokeDex />}
-        goToNextPage={nextPageUrl ? goToNextPage : null}
-        gotToPrevPage={prevPageUrl ? gotToPrevPage : null}>
-        </Route>
-        <Route path="/" element={<PokemonList  pokemon={pokemon}/>}></Route>
+        <Route path="/pokedex" element={<PokeDex />}></Route>
+        <Route path="/" element={<PokemonList pokemon={pokemon} />}></Route>
       </Routes>
       <Pagination
         goToNextPage={nextPageUrl ? goToNextPage : null}
