@@ -1,4 +1,3 @@
-import { TO_NEXT_PAGE, TO_PREV_PAGE } from "../actions/pokedexTypes";
 
 const initialState = {
   loading: false,
@@ -27,17 +26,17 @@ const pokedexReducer = (state = initialState, action) => {
         loading: false,
         error: action.payload,
       };
-    case TO_NEXT_PAGE:
+    case "TO_NEXT_PAGE":
       return {
         ...state,
-        loading: false,
-        nextPage: action.payload || null,
+        loading: true,
+        nextPage: action.payload
       };
-    case TO_PREV_PAGE:
+    case "TO_PREV_PAGE":
       return {
         ...state,
-        loading: false,
-        prevPage: action.payload || null
+        loading: true,
+        prevPage: action.payload
       }
     default:
       return state;

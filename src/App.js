@@ -5,9 +5,10 @@ import axios from "axios";
 import PokeDex from "./components/pokedexFolder/PokeDex";
 import Pagination from "./components/pagination/Pagination";
 import PokemonList from "./components/pokedexFolder/PokemonList";
+
+import PaginationRedux from "./components/pagination/PaginationRedux";
 //routes
 import { Routes, Route } from "react-router-dom";
-
 function App() {
   const [pokemon, setPokemon] = useState([]);
   const [currentPageUrl, setCurrentPageUrl] = useState(
@@ -46,13 +47,16 @@ function App() {
   return (
     <>
       <Routes>
+        {/*redux way*/}
         <Route path="/pokedex" element={<PokeDex />}></Route>
+        {/*react way*/}
         <Route path="/" element={<PokemonList pokemon={pokemon} />}></Route>
       </Routes>
-      <Pagination
+      {/*  <Pagination
         goToNextPage={nextPageUrl ? goToNextPage : null}
         gotToPrevPage={prevPageUrl ? gotToPrevPage : null}
-      />
+/>   */}
+      <PaginationRedux />
     </>
   );
 }
