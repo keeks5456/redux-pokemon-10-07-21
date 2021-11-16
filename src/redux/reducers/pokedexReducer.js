@@ -1,11 +1,11 @@
-
 const initialState = {
   loading: false,
   pokeDex: [],
+  pokemonInfo: [],
   pokeTeam: [],
   error: "",
   nextPage: "",
-  prevPage: ""
+  prevPage: "",
 };
 
 const pokedexReducer = (state = initialState, action) => {
@@ -20,6 +20,11 @@ const pokedexReducer = (state = initialState, action) => {
         loading: false,
         pokeDex: action.payload,
       };
+    case "FETCH_POKEMON_DETAIL_SUCCESS":
+      return {
+        loading: true,
+        pokemonInfo: action.payload,
+      };
     case "FETCH_POKEDEX_FALIURE":
       return {
         ...state,
@@ -29,12 +34,15 @@ const pokedexReducer = (state = initialState, action) => {
     case "TO_NEXT_PAGE":
       return {
         ...state,
+
         loading: false,
         nextPage: action.payload
+
       };
     case "TO_PREV_PAGE":
       return {
         ...state,
+
         loading: false,
         prevPage: action.payload
       }

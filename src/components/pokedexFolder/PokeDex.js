@@ -8,18 +8,18 @@ import {
 
 //component
 import PokedexCard from "./PokedexCard";
-// import Pagination from "../pagination/Pagination";
+import Pagination from "../pagination/Pagination";
 //testing
-import PaginationRedux from "../pagination/PaginationRedux";
+// import PaginationRedux from "../pagination/PaginationRedux";
 
 //styling
 import { Container } from "./pokedexStyling";
+
 
 const PokeDex = ({ fetchAllFromPokedex, pokedexData, nextPokePage, prevPokePage, nextPage, previousPage }) => {
   useEffect(() => {
     fetchAllFromPokedex();
   }, []);
-
 
   // console.log(pokedexData.pokeDex);
   return pokedexData.loading ? (
@@ -52,6 +52,7 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchAllFromPokedex: () => dispatch(fetchAllFromPokedex()),
+
     nextPage: (page) => dispatch(nextPage(page)),
     previousPage: (page) => dispatch(previousPage(page))
   };
