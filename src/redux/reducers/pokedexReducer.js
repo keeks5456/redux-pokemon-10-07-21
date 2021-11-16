@@ -29,13 +29,13 @@ const pokedexReducer = (state = initialState, action) => {
     case "TO_NEXT_PAGE":
       return {
         ...state,
-        loading: true,
+        loading: false,
         nextPage: action.payload
       };
     case "TO_PREV_PAGE":
       return {
         ...state,
-        loading: true,
+        loading: false,
         prevPage: action.payload
       }
     default:

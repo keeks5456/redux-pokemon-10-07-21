@@ -1,10 +1,10 @@
 
-const PaginationRedux = ({nextPokePage, prevPokePage}) => {
+const PaginationRedux = ({nextPokePage, prevPokePage, goToNextPage, goToPrevPage}) => {
 
   return (
     <div>
-    {prevPokePage && <button onClick={prevPokePage}>NEXT</button>}
-    {nextPokePage && <button onClick={nextPokePage}>PREVIOUS</button>}
+    {prevPokePage && <button onClick={goToPrevPage}>PREVIOUS</button>}
+    {nextPokePage && <button onClick={goToNextPage}>NEXT</button>}
     </div>
   )
 }
