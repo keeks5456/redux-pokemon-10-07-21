@@ -34,15 +34,18 @@ const pokedexReducer = (state = initialState, action) => {
     case "TO_NEXT_PAGE":
       return {
         ...state,
-        loading: true,
-        nextPage: action.payload,
+
+        loading: false,
+        nextPage: action.payload
+
       };
     case "TO_PREV_PAGE":
       return {
         ...state,
-        loading: true,
-        prevPage: action.payload,
-      };
+
+        loading: false,
+        prevPage: action.payload
+      }
     default:
       return state;
   }

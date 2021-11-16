@@ -53,6 +53,7 @@ function App() {
         {/*react way*/}
         <Route path="/" element={<PokemonList pokemon={pokemon} />}></Route>
       </Routes>
+
       <Pagination
         goToNextPage={nextPageUrl ? goToNextPage : null}
         gotToPrevPage={prevPageUrl ? gotToPrevPage : null}
