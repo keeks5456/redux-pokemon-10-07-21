@@ -2,8 +2,8 @@ import { connect } from "react-redux";
 import { useState, useEffect } from "react";
 import {
   fetchAllFromPokedex,
-  // nextPage,
-  // previousPage,
+  nextPage,
+  previousPage,
 } from "../../redux/actions/pokedexActions";
 
 //component
@@ -15,10 +15,11 @@ import PaginationRedux from "../pagination/PaginationRedux";
 //styling
 import { Container } from "./pokedexStyling";
 
-const PokeDex = ({ fetchAllFromPokedex, pokedexData, nextPokePage, prevPokePage }) => {
+const PokeDex = ({ fetchAllFromPokedex, pokedexData, nextPokePage, prevPokePage, nextPage, previousPage }) => {
   useEffect(() => {
     fetchAllFromPokedex();
-  }, [fetchAllFromPokedex]);
+  }, []);
+
 
   // console.log(pokedexData.pokeDex);
   return pokedexData.loading ? (
@@ -32,7 +33,9 @@ const PokeDex = ({ fetchAllFromPokedex, pokedexData, nextPokePage, prevPokePage 
           <PokedexCard key={index} pokemonInfo={pokedex} />
         ))}
       {/* <Pagination /> */}
-      <PaginationRedux nextPokePage={nextPokePage} prevPokePage={prevPokePage}/>
+      <PaginationRedux nextPokePage={nextPokePage} prevPokePage={prevPokePage}
+        goToNextPage={() => nextPage(nextPokePage)} goToPrevPage={() => previousPage(prevPokePage)}
+      />
     </Container>
   );
 };
@@ -49,8 +52,8 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
   return {
     fetchAllFromPokedex: () => dispatch(fetchAllFromPokedex()),
-    // nextPage: (page) => dispatch(nextPage(page)),
-    // previousPage: (page) => dispatch(previousPage(page))
+    nextPage: (page) => dispatch(nextPage(page)),
+    previousPage: (page) => dispatch(previousPage(page))
   };
 };
 

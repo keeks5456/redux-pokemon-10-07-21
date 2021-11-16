@@ -51,12 +51,10 @@ export const fetchAllFromPokedex = () => {
       .get(`https://pokeapi.co/api/v2/pokemon`)
       .then((res) => {
         const pokemons = res.data.results;
-        const nextPage = res.data.next 
-        const prevPage = res.data.prev
+        const nextPage = res.data.next
         // console.log(pokemons);
         dispatch(fetchPokedexSuccess(pokemons));
         dispatch(toNextPage(nextPage))
-        dispatch(toPreviousPage(prevPage))
       })
       .catch((error) => {
         const errorMessage = error.errorMessage;
@@ -67,42 +65,46 @@ export const fetchAllFromPokedex = () => {
   };
 };
 
-// export const nextPage = () => {
-//   return (dispatch) => {
-//     dispatch(fetchPokedexRequest);
-//     axios
-//       .get(`https://pokeapi.co/api/v2/pokemon`)
-//       .then((res) => {
-//         const pokemons = res.data.results
-//         const nextPage = res.data.next;
-//         console.log(nextPage)
-//         dispatch(fetchPokedexSuccess(pokemons));
-//         dispatch(toNextPage(nextPage));
-//       })
-//       .catch((error) => {
-//         const errorMessage = error.errorMessage;
-//         dispatch(fetchPokedexFailure(errorMessage));
-//         console.log(errorMessage);
-//       });
-//   };
-// };
+export const nextPage = (page) => {
+  return (dispatch) => {
+    dispatch(fetchPokedexRequest);
+    axios
+      .get(page)
+      .then((res) => {
+        const pokemons = res.data.results
+        const nextPage = res.data.next;
+        const prevPage = res.data.previous;
+        console.log(nextPage)
+        dispatch(fetchPokedexSuccess(pokemons));
+        dispatch(toNextPage(nextPage));
+        dispatch(toPreviousPage(prevPage));
+      })
+      .catch((error) => {
+        const errorMessage = error.errorMessage;
+        dispatch(fetchPokedexFailure(errorMessage));
+        console.log(errorMessage);
+      });
+  };
+};
 
-// export const previousPage = () => {
-//   return (dispatch) => {
-//     dispatch(fetchPokedexRequest);
-//     axios
-//       .get(`https://pokeapi.co/api/v2/pokemon`)
-//       .then((res) => {
-//         const pokemons = res.data.results
-//         const prevPage = res.data.previous;
-//         console.log(prevPage);
-//         dispatch(fetchPokedexSuccess(pokemons))
-//         dispatch(toPreviousPage(prevPage));
-//       })
-//       .catch((error) => {
-//         const errorMessage = error.errorMessage;
-//         dispatch(fetchPokedexFailure(errorMessage));
-//         console.log(errorMessage);
-//       });
-//   };
-// };
+export const previousPage = (page) => {
+  return (dispatch) => {
+    dispatch(fetchPokedexRequest);
+    axios
+      .get(page)
+      .then((res) => {
+        const pokemons = res.data.results
+        const prevPage = res.data.previous;
+        const nextPage = res.data.next;
+        console.log(prevPage);
+        dispatch(fetchPokedexSuccess(pokemons))
+        dispatch(toPreviousPage(prevPage));
+        dispatch(toNextPage(nextPage));
+      })
+      .catch((error) => {
+        const errorMessage = error.errorMessage;
+        dispatch(fetchPokedexFailure(errorMessage));
+        console.log(errorMessage);
+      });
+  };
+};
