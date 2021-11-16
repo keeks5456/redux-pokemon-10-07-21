@@ -44,8 +44,6 @@ export const toPreviousPage = (page) => {
   };
 };
 
-
-
 export const fetchAllFromPokedex = () => {
   return (dispatch) => {
     dispatch(fetchPokedexRequest);
@@ -53,12 +51,12 @@ export const fetchAllFromPokedex = () => {
       .get(`https://pokeapi.co/api/v2/pokemon`)
       .then((res) => {
         const pokemons = res.data.results;
-        const theNextPage = res.data.next;
-        const thePrevPage = res.data.previous
+        const nextPage = res.data.next 
+        const prevPage = res.data.prev
         // console.log(pokemons);
         dispatch(fetchPokedexSuccess(pokemons));
-        dispatch(toNextPage(theNextPage));
-        dispatch(toPreviousPage(thePrevPage));
+        dispatch(toNextPage(nextPage))
+        dispatch(toPreviousPage(prevPage))
       })
       .catch((error) => {
         const errorMessage = error.errorMessage;
@@ -68,3 +66,43 @@ export const fetchAllFromPokedex = () => {
       });
   };
 };
+
+// export const nextPage = () => {
+//   return (dispatch) => {
+//     dispatch(fetchPokedexRequest);
+//     axios
+//       .get(`https://pokeapi.co/api/v2/pokemon`)
+//       .then((res) => {
+//         const pokemons = res.data.results
+//         const nextPage = res.data.next;
+//         console.log(nextPage)
+//         dispatch(fetchPokedexSuccess(pokemons));
+//         dispatch(toNextPage(nextPage));
+//       })
+//       .catch((error) => {
+//         const errorMessage = error.errorMessage;
+//         dispatch(fetchPokedexFailure(errorMessage));
+//         console.log(errorMessage);
+//       });
+//   };
+// };
+
+// export const previousPage = () => {
+//   return (dispatch) => {
+//     dispatch(fetchPokedexRequest);
+//     axios
+//       .get(`https://pokeapi.co/api/v2/pokemon`)
+//       .then((res) => {
+//         const pokemons = res.data.results
+//         const prevPage = res.data.previous;
+//         console.log(prevPage);
+//         dispatch(fetchPokedexSuccess(pokemons))
+//         dispatch(toPreviousPage(prevPage));
+//       })
+//       .catch((error) => {
+//         const errorMessage = error.errorMessage;
+//         dispatch(fetchPokedexFailure(errorMessage));
+//         console.log(errorMessage);
+//       });
+//   };
+// };
