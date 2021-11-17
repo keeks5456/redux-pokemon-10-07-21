@@ -1,5 +1,5 @@
 import { connect } from "react-redux";
-import { useState, useEffect } from "react";
+import { useEffect } from "react";
 import {
   fetchAllFromPokedex,
   nextPage,
@@ -11,8 +11,8 @@ import PokedexCard from "./PokedexCard";
 import PaginationRedux from "../pagination/PaginationRedux";
 
 //styling
-import { Container } from "./pokedexStyling";
-
+import { Container, ButtonContainer, Title } from "./pokedexStyling";
+import pokemonLogo from "../../assets/pokemonLogo.png";
 const PokeDex = ({
   fetchAllFromPokedex,
   pokedexData,
@@ -25,24 +25,28 @@ const PokeDex = ({
     fetchAllFromPokedex();
   }, []);
 
-
   return pokedexData.loading ? (
     <h2>Loading...</h2>
   ) : pokedexData.error ? (
     <p>{pokedexData.error}</p>
   ) : (
-    <Container>
-      {pokedexData.pokeDex &&
-        pokedexData.pokeDex.map((pokedex, index) => (
-          <PokedexCard key={index} pokemonInfo={pokedex} />
-        ))}
+    <>
+      <Title></Title>
+      <Container>
+        {pokedexData.pokeDex &&
+          pokedexData.pokeDex.map((pokedex, index) => (
+            <PokedexCard key={index} pokemonInfo={pokedex} />
+          ))}
+      </Container>
+      <ButtonContainer>
       <PaginationRedux
         nextPokePage={nextPokePage}
         prevPokePage={prevPokePage}
         goToNextPage={() => nextPage(nextPokePage)}
         goToPrevPage={() => previousPage(prevPokePage)}
       />
-    </Container>
+    </ButtonContainer>
+    </>
   );
 };
 
