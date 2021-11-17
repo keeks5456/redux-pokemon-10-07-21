@@ -4,7 +4,7 @@ export const Container = styled.div`
   display: flex;
   flex-direction: row;
   flex-wrap: wrap;
-  justify-content: space-between;
+  justify-content: center;
   height: 100%;
   width: 100%;
   border: 2px solid red;
@@ -26,6 +26,11 @@ export const Title = styled.div`
   background-repeat: no-repeat;
   background-position: center;
   background-size: cover;
+
+  @media  screen and (max-width: 768px){
+    height: 150px;
+    width: auto;
+  }
 `;
 
 export const Card = styled.div`
