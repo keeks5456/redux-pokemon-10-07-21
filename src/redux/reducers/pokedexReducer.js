@@ -36,16 +36,15 @@ const pokedexReducer = (state = initialState, action) => {
         ...state,
 
         loading: false,
-        nextPage: action.payload
-
+        nextPage: action.payload,
       };
     case "TO_PREV_PAGE":
       return {
         ...state,
 
         loading: false,
-        prevPage: action.payload
-      }
+        prevPage: action.payload,
+      };
     default:
       return state;
   }

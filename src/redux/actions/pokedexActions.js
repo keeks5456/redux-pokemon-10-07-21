@@ -44,6 +44,12 @@ export const toPreviousPage = (page) => {
   };
 };
 
+export const fetchPokemonDetailSuccess = (data) => {
+  return {
+    type: FETCH_POKEMON_DETAIL_SUCCESS,
+    payload: data,
+  };
+};
 
 export const fetchAllFromPokedex = () => {
   return (dispatch) => {
@@ -52,18 +58,37 @@ export const fetchAllFromPokedex = () => {
       .get(`https://pokeapi.co/api/v2/pokemon`)
       .then((res) => {
         const pokemons = res.data.results;
-        const nextPage = res.data.next
+        const nextPage = res.data.next;
         dispatch(fetchPokedexSuccess(pokemons));
-        dispatch(toNextPage(nextPage))
+        dispatch(toNextPage(nextPage));
       })
       .catch((error) => {
         const errorMessage = error.errorMessage;
         dispatch(fetchPokedexFailure(errorMessage));
         console.log(errorMessage);
       });
-    };
   };
+};
 
+const pokemonUrl = axios.get(`https://pokeapi.co/api/v2/pokemon`)
+  .then((res) => {
+    const pokemon = res.data.results
+    const pokeURL = pokemon.map((p) => p.url)
+    console.log(pokeURL)
+  })
+  .catch((error) => console.log(error))
+
+  console.log(pokemonUrl)
+
+export const fetchAllPokemonDetail = (pokemon) => {
+  return (dispatch) => {
+    dispatch(fetchPokedexRequest);
+    const oneURL = pokemonUrl.map((url) => url)
+
+  };
+};
+
+fetchAllPokemonDetail()
 
 export const nextPage = (page) => {
   return (dispatch) => {
@@ -71,7 +96,7 @@ export const nextPage = (page) => {
     axios
       .get(page)
       .then((res) => {
-        const pokemons = res.data.results
+        const pokemons = res.data.results;
         const nextPage = res.data.next;
         const prevPage = res.data.previous;
         dispatch(fetchPokedexSuccess(pokemons));
@@ -92,11 +117,11 @@ export const previousPage = (page) => {
     axios
       .get(page)
       .then((res) => {
-        const pokemons = res.data.results
+        const pokemons = res.data.results;
         const prevPage = res.data.previous;
         const nextPage = res.data.next;
         console.log(prevPage);
-        dispatch(fetchPokedexSuccess(pokemons))
+        dispatch(fetchPokedexSuccess(pokemons));
         dispatch(toPreviousPage(prevPage));
         dispatch(toNextPage(nextPage));
       })
